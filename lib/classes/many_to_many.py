@@ -1,16 +1,20 @@
 class Article:
-    all = []  # Class-level list to track all articles
+    # Class-level list to track all articles
+    all = [] 
 
+    # Constructor to initialize an article with author, magazine, and title
     def __init__(self, author, magazine, title):
         self.author = author
         self.magazine = magazine
         self.title = title
         Article.all.append(self)
 
+    #Should not be able to change title after instantiation
     @property
     def title(self):
-        return self._title
-
+        return self._
+    
+    # Title must be a string between 5 and 50 characters and of type str
     @title.setter
     def title(self, value):
         if hasattr(self, '_title'):
@@ -72,7 +76,7 @@ class Author:
         if not mags:
             return None
         return list(set(mag.category for mag in mags))
-
+    
 
 class Magazine:
     def __init__(self, name, category):
@@ -125,3 +129,30 @@ class Magazine:
         author_counts = Counter(article.author for article in arts)
         result = [author for author, count in author_counts.items() if count > 2]
         return result if result else None
+    
+    #Instance method to get the magazine's category
+    def get_category(self):
+        return self.category
+     #instance Aricle method to get the magazine's name
+    def get_name(self):
+        return self.name
+    
+
+author1 = Author("Edward Kamande")
+author2 = Author("Mary Wanjiku")
+magazine1 = Magazine("Vogue", "Fashion")
+article1 = Article(author1, magazine1, "How to wear a mtush with style")
+#Instance to add article
+article2 = author1.add_article(magazine1, "Dating life in Nairobi")
+print(article2)
+print(article1.author.name)
+print(article1.magazine.name)
+print(article1.magazine.category)
+#Topic areas for author1
+print(author1.topic_areas())
+# Instance method to get magazine category
+print(article1.magazine.get_category())
+# Instance method to get magazine name
+print(article1.magazine.get_name())
+#Instance method to get contributors
+print(magazine1.contributors())
